@@ -1,0 +1,310 @@
+/* Global styles */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    background: #333;
+    color: hsl(200, 100%, 90%);
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+/* Form styles */
+.new-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #333;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-between;
+}
+
+/* Button styles */
+.btn {
+    background: hsl(200, 100%, 50%, 0.1);
+    border: 1px solid hsl(200, 100%, 50%);
+    color: hsl(200, 100%, 50%);
+    padding: 0.25em 0.5em;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    width: 50px;
+    height: 25px;
+}
+
+
+/* Specific button styles */
+.btn.btn-form {
+    width: 80px;
+    height: 45px;
+}
+
+.new-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn.btn-page {
+    width: 100px;
+    height: 25px;
+}
+
+/* Button container styles */
+.button-container-gen {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background: #333;
+}
+
+/* Button hover and focus styles */
+.btn:hover,
+.btn:focus-visible {
+    background: hsl(200, 100%, 50%, 0.2);
+}
+
+/* Danger button styles */
+.btn.btn-danger {
+    background: hsl(0, 100%, 40%, 0.1);
+    border: 1px solid hsl(0, 100%, 40%);
+    color: hsl(0, 100%, 40%);
+    margin-left: 10px;
+}
+
+/* Danger button hover and focus styles */
+.btn.btn-danger:hover,
+.btn.btn-danger:focus-visible {
+    background: hsl(0, 100%, 40%, 0.2);
+}
+
+/* Edit window styles */
+.edit-window {
+    padding-top: 10px;
+}
+
+/* Form group styles */
+.form-group {
+    padding-top: 10px;
+}
+
+/* Category input styles */
+.category-input {
+    border-radius: 10px;
+}
+
+/* Page count styles */
+.page-count {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Input container styles */
+.input-container input {
+    outline: none;
+    border: 1px solid hsl(200, 100%, 40%);
+    background: hsl(200, 100%, 30%);
+    border-radius: 15px;
+    padding: 0.25em 0.5em;
+    color: hsl(200, 100%, 90%);
+    width: 60vw;
+    height: 45px;
+}
+
+/* Input container styles */
+.input-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Title container image styles */
+.title-container img {
+    width: 150px;
+    height: auto;
+}
+
+/* List container styles */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+}
+
+/* List container heading styles */
+.list-container h2 {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+/* Specific list container heading styles */
+.list-container .games-title {
+    border: 2px solid yellow;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.list-container .playing-title {
+    border: 2px solid orange;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.list-container .finished-title {
+    border: 2px solid green;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.list-container .dropped-title {
+    border: 2px solid red;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+/* List item styles */
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid purple;
+    border-radius: 5px;
+    list-style: none;
+    width: 60vw;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+/* List item image styles */
+.list-item img {
+    width: 65px;
+    height: 85px;
+    border-radius: 5px;
+}
+
+/* List item label styles */
+.list-item label {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* List item label and button styles */
+.list-item label,
+.list-item .btn {
+    align-self: center;
+}
+
+/* Game card styles */
+.game-card {
+    border: 2px solid purple;
+    display: flex;
+    width: 250px;
+    height: 250px;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px #000000;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Game card hover styles */
+.game-card:hover {
+    transform: scale(1.1);
+}
+
+/* Game card heading styles */
+.game-card h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+/* Games container styles */
+.games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    justify-items: center;
+    padding-top: 140px;
+}
+
+/* Game card image styles */
+.game-card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    object-position: bottom;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+/* Modal overlay styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+/* Modal styles */
+.modal {
+    width: 290px;
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Form group label styles */
+.form-group label {
+    padding-right: 5px;
+}
+
+/* Form group select styles */
+.form-group select {
+    border: 1px solid hsl(200, 100%, 40%);
+    background: hsl(200, 100%, 30%);
+    border-radius: 15px;
+}
+
+.list-container {
+    padding-top: 100px;
+}
+
+.rating {
+    border: 1px solid hsl(200, 100%, 40%);
+    background: hsl(200, 100%, 30%);
+    border-radius: 15px;
+    margin-right: 8px;
+    height: 25px;
+}
+
+.title-container img {
+    width: 150px;
+    height: auto;
+}
