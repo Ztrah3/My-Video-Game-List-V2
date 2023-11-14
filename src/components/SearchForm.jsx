@@ -1,10 +1,12 @@
-import React from 'react';
 import logo from '../images/Logo1.png'
 import SignOutButton from './SignOutButton';
 import "../styles/styles.css"
 
+// SearchForm component
 export default function SearchForm({ isSearching, handleInputChange, handleKeyPress, fetchRandomGames, handleViewListClick, handleSearchClick, setUser, setIsAuthenticated }) {
     return (
+         // Render a form that contains a logo, a title or search input, and a set of buttons
+        // The set of buttons changes based on whether the user is currently searching for games
         <form className="new-form sticky">
             <div className="form-row">
                 <div className="title-container">

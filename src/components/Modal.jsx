@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import "../styles/styles.css"
 
+// Modal component
 function Modal({ isOpen, onClose, selectedGame, editingGame, setEditingGame, gamesToPlay, setGamesToPlay, currentlyPlaying, setCurrentlyPlaying, finishedGames, setFinishedGames, droppedGames, setDroppedGames }) {
+    // State variables
     const [selectedCategory, setSelectedCategory] = useState('gamesToPlay');
-    const [selectedRating, setSelectedRating] = useState(1);
     const [gameData, setGameData] = useState(null);
 
+    // useEffect hook to set the game data state when editing a game or adding a new game
     useEffect(() => {
         if (editingGame) {
             setSelectedCategory(editingGame.category);
@@ -15,16 +17,17 @@ function Modal({ isOpen, onClose, selectedGame, editingGame, setEditingGame, gam
         }
     }, [editingGame, selectedGame]);
 
+    // If the modal is not open, return null
     if (!isOpen) return null;
 
+    // Function to handle the Add button click
     const handleAddClick = () => {
         const gameToAdd = {
             ...gameData,
             timestamp: editingGame ? editingGame.timestamp : Date.now(),
         };
-
+        // If the game is being moved to a different category, remove it from its current list
         if (editingGame && editingGame.category !== selectedCategory) {
-            // remove the game from its current list
             switch (editingGame.category) {
                 case 'gamesToPlay':
                     setGamesToPlay(gamesToPlay.filter(game => game.timestamp !== editingGame.timestamp));
@@ -43,7 +46,7 @@ function Modal({ isOpen, onClose, selectedGame, editingGame, setEditingGame, gam
             }
         }
 
-        // add the game to its new list
+        // Add the game to its new list
         switch (selectedCategory) {
             case 'gamesToPlay':
                 if (!gamesToPlay.some(game => game.name === gameToAdd.name)) {
@@ -69,6 +72,7 @@ function Modal({ isOpen, onClose, selectedGame, editingGame, setEditingGame, gam
                 break;
         }
 
+        // Reset the editingGame state and selectedCategory state, and close the modal
         if (editingGame) {
             setEditingGame(null);
         }
@@ -77,6 +81,7 @@ function Modal({ isOpen, onClose, selectedGame, editingGame, setEditingGame, gam
     };
 
     return (
+        // Render the modal
         <div className="modal-overlay">
             <div className="modal">
                 <h2>{editingGame ? 'Edit game' : 'Add game to list'}</h2>

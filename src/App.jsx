@@ -29,6 +29,7 @@ export default function App() {
   const [rating, setRating] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // useEffect hook to handle user authentication and fetching user's lists from Firestore
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -66,6 +67,7 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
+   // Function to fetch games from the API
   const fetchGames = async (page) => {
     const perPage = 20;
     // Include the search term in the API request
@@ -82,18 +84,19 @@ export default function App() {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
+      // Map results of API request
       let transformedData = result.results.map((game) => ({
         id: game.id,
         name: game.name,
         image_background: game.background_image
       }));
-
+      // Call setGames function on APT request results
       setGames(transformedData);
     } catch (error) {
       console.error(error);
     }
   };
-
+  // Function to fetch a random order of games from the API
   const fetchRandomGames = async (event) => {
     event.preventDefault();
 
@@ -122,13 +125,15 @@ export default function App() {
       console.error(error);
     }
   };
+ // Function to handle the search button click
   const handleSearchClick = (event) => {
     event.preventDefault();
     setIsSearching(true);
-    setPage(1); // Set the page state to 1 before making a new search
+    setPage(1); 
     fetchGames(page);
   };
 
+  // Function to handle the next button click in pagination
   const handleNextClick = (event) => {
     event.preventDefault();
     setTimeout(() => {
@@ -136,7 +141,8 @@ export default function App() {
     }, 1100);
     fetchGames(page + 1);
   };
-
+  
+  // Function to handle the previous button click in pagination
   const handlePreviousClick = (event) => {
     event.preventDefault();
     if (page > 1) {
@@ -146,7 +152,8 @@ export default function App() {
       fetchGames(page - 1);
     }
   };
-
+  
+  // Function to handle the view list button click
   const handleViewListClick = (event) => {
     event.preventDefault();
     setIsSearching(false);
@@ -157,6 +164,7 @@ export default function App() {
     setSearchTerm(event.target.value);
   };
 
+  // Function to handle the Enter key press in the search field
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -164,11 +172,13 @@ export default function App() {
     }
   };
 
+  // Function to handle the game card click
   const handleGameClick = (game) => {
     setSelectedGame(game); // Set the selected game when a game card is clicked
     setIsModalOpen(true);
   };
 
+  // Functions to remove a game from the respective lists
   const removeGameFromGamesToPlay = (timestamp) => {
     setGamesToPlay(gamesToPlay.filter(game => game.timestamp !== timestamp));
   };
@@ -185,12 +195,13 @@ export default function App() {
     setDroppedGames(droppedGames.filter(game => game.timestamp !== timestamp));
   };
 
+  // Function to handle the edit button click
   const handleEditClick = (game, category) => {
     setEditingGame({ ...game, category });
     setIsModalOpen(true);
   };
 
-  // Save the user's lists to Firestore when they change
+  // Function to save the user's lists to Firestore when they change
   const saveListsToFirestore = async () => {
     if (isAuthenticated) {
       const auth = getAuth();
@@ -208,10 +219,11 @@ export default function App() {
     }
   };
 
+  // useEffect hook to save the user's lists to Firestore when they change
   useEffect(() => {
     saveListsToFirestore();
   }, [gamesToPlay, currentlyPlaying, finishedGames, droppedGames, rating]);
-
+  // Render components
   return (
 
     <Router>

@@ -4,26 +4,32 @@ import Button from "./Button";
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from "./AuthGoogle";
 import '../styles/signInFormStyle.scss'
 
+// Default form fields
 const deafualtFormFields = {
     email: '',
     password: '',
 }
 
+// Default form fields
 const SignInForm = () => {
+    // State variable for the form fields
     const [formFields, setFormFields] = useState(deafualtFormFields);
     const { email, password } = formFields;
 
     console.log(formFields);
 
+    // Function to reset the form fields
     const resetFormFields = () => {
         setFormFields(deafualtFormFields)
     }
 
+     // Function to sign in with Google
     const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup();
         await createUserDocumentFromAuth(user);
     };
 
+    // Function to handle the form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -39,12 +45,13 @@ const SignInForm = () => {
         }
     }
 
+    // Function to handle the change event of the input elements
     const handleChange = (event) => {
         const { name, value } = event.target;
 
         setFormFields({ ...formFields, [name]: value })
     }
-
+    // Render the sign in form
     return (
         <div className="sign-up-container">
             <h2>Already have an account?</h2>
