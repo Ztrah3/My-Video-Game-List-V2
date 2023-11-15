@@ -22,8 +22,11 @@ function Modal({ isOpen, onClose, selectedGame, editingGame, setEditingGame, gam
 
     // Function to handle the Add button click
     const handleAddClick = () => {
+        // Declare object to add games to list
         const gameToAdd = {
+            // Use spread operator to copy all properties from the gameData object into the gameAdd object
             ...gameData,
+            // If true use timestamp from editingGame, if false create new current timestamp
             timestamp: editingGame ? editingGame.timestamp : Date.now(),
         };
         // If the game is being moved to a different category, remove it from its current list
@@ -48,8 +51,11 @@ function Modal({ isOpen, onClose, selectedGame, editingGame, setEditingGame, gam
 
         // Add the game to its new list
         switch (selectedCategory) {
+            // Check if `selectedCategory` is equal to one of the game lists
             case 'gamesToPlay':
+                // Check if the game to be added already exists in the list.
                 if (!gamesToPlay.some(game => game.name === gameToAdd.name)) {
+                     // Add the game to the list by creating a new array that contains all the elements of the old array and the new game, then setting the game list state to this new array.
                     setGamesToPlay([...gamesToPlay, gameToAdd]);
                 }
                 break;

@@ -4,20 +4,17 @@ import Button from "./Button";
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from "./AuthGoogle";
 import '../styles/signInFormStyle.scss'
 
-// Default form fields
+// // Declare default form fields
 const deafualtFormFields = {
     email: '',
     password: '',
 }
 
-// Default form fields
+// Set form fields state to default form fields
 const SignInForm = () => {
     // State variable for the form fields
     const [formFields, setFormFields] = useState(deafualtFormFields);
     const { email, password } = formFields;
-
-    console.log(formFields);
-
     // Function to reset the form fields
     const resetFormFields = () => {
         setFormFields(deafualtFormFields)
@@ -34,10 +31,12 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
+            // Attempt to sign in the user with the provided email and password
             const response = await signInAuthUserWithEmailAndPassword(email, password);
             console.log(response);
             resetFormFields();
         } catch (error) {
+             // If the error code indicates invalid login credentials, alert the user
             if (error.code === 'auth/invalid-login-credentials') {
                 alert('Incorrect user credentials')
             }

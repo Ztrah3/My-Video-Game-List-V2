@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import "./styles/styles.css"
 import Modal from './components/Modal';
@@ -13,7 +13,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 export default function App() {
-
+   //State variables 
   const [isSearching, setIsSearching] = useState(false);
   const [page, setPage] = useState(1);
   const [games, setGames] = useState([]);
@@ -127,6 +127,7 @@ export default function App() {
   };
  // Function to handle the search button click
   const handleSearchClick = (event) => {
+     //Prevent page from reloading on button click
     event.preventDefault();
     setIsSearching(true);
     setPage(1); 
@@ -204,16 +205,21 @@ export default function App() {
   // Function to save the user's lists to Firestore when they change
   const saveListsToFirestore = async () => {
     if (isAuthenticated) {
+      // Get firebase authentication object
       const auth = getAuth();
+      // Get currently logged in user from auth object
       const user = auth.currentUser;
       if (user) {
+         // Get currently logged in user from auth object
         const userDocRef = doc(db, 'users', user.uid);
+        // Set data in the doc based on the userDocRef 
         await setDoc(userDocRef, {
           gamesToPlay,
           currentlyPlaying,
           finishedGames,
           droppedGames,
           rating
+          // Tells Firestore to merge inputs with any existing doc
         }, { merge: true });
       }
     }

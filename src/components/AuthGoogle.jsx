@@ -34,18 +34,19 @@ export const db = getFirestore();
 // Function to create a user document from auth
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if (!userAuth) return;
-
+    //Create a reference to a doc in the users collection on Firestore
     const userDocRef = doc(db, 'users', userAuth.uid);
-
-    console.log(userDocRef)
-
+    // Retrieve a snapshot of the doc referred to by the userDocRef that contains the current state of the doc 
     const userSnapshot = await getDoc(userDocRef);
 
+    // check if doc exists in Firestore and if not create one
     if (!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
+        // Create timestamp of when the doc is created
         const createdAt = new Date();
 
         try {
+             // Create timestamp of when the doc is created
             await setDoc(userDocRef, {
                 displayName,
                 email,
@@ -56,7 +57,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
             console.log('error creating the user', error.message);
         }
     }
-
+    // Return the reference for the user doc for later read or update
     return userDocRef;
 };
 
