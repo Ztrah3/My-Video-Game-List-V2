@@ -210,7 +210,7 @@ export default function App() {
       // Get currently logged in user from auth object
       const user = auth.currentUser;
       if (user) {
-         // Get currently logged in user from auth object
+         // Create a reference to the firestore database doc located in the users collection
         const userDocRef = doc(db, 'users', user.uid);
         // Set data in the doc based on the userDocRef 
         await setDoc(userDocRef, {

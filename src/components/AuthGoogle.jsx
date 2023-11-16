@@ -46,7 +46,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
         const createdAt = new Date();
 
         try {
-             // Create timestamp of when the doc is created
+            // Set data in the doc referred by the userDocRef 
             await setDoc(userDocRef, {
                 displayName,
                 email,
