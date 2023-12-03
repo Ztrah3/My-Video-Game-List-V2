@@ -141,6 +141,10 @@ body {
     width: 100%;
 }
 
+.view-list-title {
+    margin-top: 40px;
+}
+
 /* List container styles */
 .list-container {
     display: flex;
@@ -148,6 +152,7 @@ body {
     align-items: center;
     gap: 1rem;
     list-style: none;
+    margin-top: 25px;
 }
 
 /* List container heading styles */

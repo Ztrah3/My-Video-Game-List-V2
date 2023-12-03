@@ -18,7 +18,7 @@ export default function SearchForm({ isSearching, handleInputChange, handleKeyPr
                             <input type="text" id="item" placeholder="Search for games" onChange={handleInputChange} onKeyDown={handleKeyPress} />
                         </div>
                     ) : (
-                        <h1>View and edit your video game list below</h1>
+                        <h1 className='view-list-title'>View and edit your video game list below</h1>
                     )}
                 </div>
                 <div className="title-container">
